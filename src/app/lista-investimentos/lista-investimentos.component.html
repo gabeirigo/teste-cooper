@@ -1,0 +1,29 @@
+<section class="investimentos">
+  <div class="investimentos__container">
+    <h2 class="investimentos__page-title">Investimentos</h2>
+
+    <div class="investimentos__card">
+      <div class="investimentos__header">
+        <span class="investimentos__title">Nome</span>
+        <span class="investimentos__title">Objetivo</span>
+        <span class="investimentos__title">Saldo Total</span>
+      </div>
+      <div class="investimentos__rows">
+        <div class="investimentos__row" 
+          *ngFor="let investimento of investimentos; let i = index"
+        >
+          <a class="investimentos__row-link" 
+            [style.pointer-events]="investimento.indicadorCarencia === 'N' ? 'auto' : 'none'"
+            [ngClass]="{'investimentos__row-link--disabled':investimento.indicadorCarencia === 'S'}"
+            [routerLink]="['/resgate-personalizado', investimento.id]"
+            title="Resgatar {{ investimento.nome }}"
+          >
+            <span class="investimentos__value">{{investimento.nome}}</span>
+            <span class="investimentos__value">{{investimento.objetivo}}</span>
+            <span class="investimentos__value">{{investimento.saldoTotal | currency:'BRL'}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

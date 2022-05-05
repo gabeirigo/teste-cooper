@@ -1,0 +1,37 @@
+<form [formGroup]="form" (ngSubmit)="salvar()">
+  <div class="card-acoes__card">
+    <div class="card-acoes__header">
+      <span class="card-acoes__title">Ação</span>
+      <span class="card-acoes__title">Saldo acumulado</span>
+      <span class="card-acoes__title">Valor a resgatar</span>
+    </div>
+    <div class="card-acoes__rows">
+      <div class="card-acoes__row" 
+        *ngFor="let acao of acoes; let i = index"
+      >
+          <span class="card-acoes__value">{{acao.nome}}</span>
+          <span class="card-acoes__value">{{(saldoTotal / 100) * acao.percentual | currency: 'BRL'}}</span>
+
+          <div class="card-acoes__container-input">
+            <input type="text" class="card-acoes__input" [formControlName]="acao.id" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+
+            <span 
+              class="card-acoes__value-invalid" 
+              *ngIf="form.controls[acao.id].errors && form.controls[acao.id].errors['max']">O valor a resgatar não pode ser maior que {{(saldoTotal / 100) * acao.percentual | currency: 'BRL'}}</span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-acoes__card">
+    <h3>Valor total do resgate: <span>{{(resgateTotal | currency: 'BRL' ) || 'R$0,00'}}</span></h3>
+  </div>
+
+  <div class="card-acoes__controls">
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid || !form.dirty">Salvar</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+  </div>
+</form>
+
+<app-modal *ngIf="showModal" [type]="modalType" (closeModalEvent)="handleCloseModal()"></app-modal>
+

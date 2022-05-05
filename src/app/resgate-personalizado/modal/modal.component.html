@@ -1,0 +1,14 @@
+<div class="modal">
+  <div class="modal__content">
+    <div *ngIf="type === 'success'">
+      <h2>Resgate efetuado com sucesso!</h2>
+      <button type="button" (click)="closeModal()">Novo resgate</button>
+    </div>
+    
+    <div *ngIf="type === 'error'">
+      <h2>Dados inválidos</h2>
+      <p>Você preencheu um ou mais campos com dados inválidos!</p>
+      <button type="button" (click)="closeModal()">Corrigir</button>
+    </div>
+  </div>
+</div>

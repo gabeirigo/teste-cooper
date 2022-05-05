@@ -1,0 +1,37 @@
+<section class="resgate-personalizado" *ngIf="investimento" >
+  <div class="resgate-personalizado__container">
+    <h2 class="resgate-personalizado__page-title">Dados do investimento</h2>
+
+    <div class="resgate-personalizado__card">
+      <div class="resgate-personalizado__header">
+        <div class="resgate-personalizado__item">
+          <i class="resgate-personalizado__icon icofont-ui-user"></i>
+          <div class="resgate-personalizado__header-description">
+            <span class="resgate-personalizado__title">Nome</span>
+            <span class="resgate-personalizado__header-description-value">{{investimento.nome}}</span>
+          </div>
+        </div>
+        <div class="resgate-personalizado__item">
+          <i class="resgate-personalizado__icon icofont-chart-growth"></i>
+          <div class="resgate-personalizado__header-description">
+            <span class="resgate-personalizado__title">Objetivo</span>
+            <span class="resgate-personalizado__header-description-value">{{investimento.objetivo}}</span>
+          </div>
+        </div>
+        <div class="resgate-personalizado__item">
+          <i class="resgate-personalizado__icon icofont-money-bag"></i>
+          <div class="resgate-personalizado__header-description">
+            <span class="resgate-personalizado__title">Saldo Total</span>
+            <span class="resgate-personalizado__header-description-value">{{investimento.saldoTotal | currency: 'BRL'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="resgate-personalizado__page-title">Resgate</h2>
+    <app-card-acoes [acoes]="investimento.acoes" [saldoTotal]="investimento.saldoTotal || 0"></app-card-acoes>
+  </div>
+</section>
+
+
+
